@@ -1,4 +1,4 @@
-@extends('layout.dashboard')
+@extends('layout.userdashboard')
 @section('content-dashboard')  
 <div class="container mt-4">
     <h3>Accountant Dashboard</h3>

@@ -21,7 +21,7 @@ class AdminController extends Controller
         $user->user_password = Hash::make($req->user_password);
         $user->user_phone = $req->user_phone;    
         $user->save();
-        return redirect('add-user');    
+        return redirect('manage-user');    
     }
     function getData(){
         $user = User::all();

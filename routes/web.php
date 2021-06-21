@@ -19,8 +19,15 @@ App\Http\Controllers\AdminController
 */
 
 Route::get('/', function () {
-    if(session()->has('Admin') || session()->has('Accountant') || session()->has('HR')){
-        return redirect('profile');
+    if(session()->has('Admin')){
+        return redirect('profile-Admin');
+    }
+    elseif(session()->has('Accountant')){
+        return redirect('profile-Accountant');
+    }
+    
+    elseif(session()->has('HR')){
+        return redirect('profile-HR');
     }
     else{
         return view('pages.login');
@@ -43,7 +50,7 @@ Route::post('/', [UserController::class, 'login']);
 
 // Admin Routing
 Route::group(['middleware'=>['adminauth']], function(){
-    Route::get('profile', [AdminController::class, 'index']);
+    Route::get('profile-Admin', [AdminController::class, 'index']);
     Route::get('add-user', function () {
         return view('dashboard.admin.addUser');
     });
@@ -55,13 +62,13 @@ Route::group(['middleware'=>['adminauth']], function(){
 });
 // Accountant Routing
 Route::group(['middleware'=>['accountantauth']], function(){
-    Route::get('profile', function(){
+    Route::get('profile-Accountant', function(){
         return view('dashboard.account.profile');
     });
 });
 // HR Routing
 Route::group(['middleware'=>['hrauth']], function(){
-    Route::get('profile', function(){
+    Route::get('profile-HR', function(){
         return view('dashboard.hr.profile');
     });
 });

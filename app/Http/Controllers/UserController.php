@@ -14,7 +14,7 @@ class UserController extends Controller
         if($info!=null){
             if(Hash::check($req->pass, $info->user_password)){
                session()->put($info->user_roles, $info);
-                return redirect('profile');
+                return redirect('profile-'.$info->user_roles);
             }   
             else{
                 $error = "Your Password is incorrect, Please Check it";
